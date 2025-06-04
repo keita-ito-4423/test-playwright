@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/1');
+  await page.goto('https://playwright.dev/');
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Playwright/);
@@ -16,3 +16,9 @@ test('get started link', async ({ page }) => {
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
 });
+
+test('environment variable test', async ({ page }) => {
+  expect(process.env.ENV_URL).toBe('https://playwright.dev/');
+  expect(process.env.USERID).toBe('dev.user');
+  expect(process.env.PASSWORD).toBe('dev.pass');
+})
