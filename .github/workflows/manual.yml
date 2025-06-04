@@ -18,6 +18,10 @@ on:
                 description: 'password'
                 type: string
                 required: true
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 jobs:
   test:
     timeout-minutes: 60
@@ -31,7 +35,7 @@ jobs:
     - name: print environment variable
       run: |
         echo "env: ${{ inputs.environment }}"
-        echo "env_url: ${{ vars.ENV_URL }}"
+        echo "env_url: ${{ secrets.ENV_URL }}"
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
@@ -39,7 +43,7 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
       env:
-          ENV_URL: ${{ vars.ENV_URL }}
+          ENV_URL: ${{ secrets.ENV_URL }}
           USERID: ${{ inputs.userid }}
           PASSWORD: ${{ inputs.password }}
     - uses: actions/upload-artifact@v4
