@@ -21,4 +21,4 @@ test('environment variable test', async ({ page }) => {
   expect.soft(process.env.ENV_URL, 'env url is ok').toBe('https://playwright.dev/');
   expect.soft(process.env.USERID, 'userid is ok').toBe('dev.userid');
   expect.soft(process.env.PASSWORD, 'password is ok').toBe('dev.password');
-})
+});
